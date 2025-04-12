@@ -57,7 +57,7 @@ class Habit(models.Model):
         help_text='Привычка, которая связана с текущей (например, приятная привычка для вознаграждения)',
         **NULLBLE
     )
-    user = models.ForeignKey(
+    creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         related_name="subscription",
