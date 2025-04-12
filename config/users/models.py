@@ -4,7 +4,7 @@ from django.db import models
 NULLBLE = {"blank": True, "null": True}
 
 class User(AbstractUser):
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, verbose_name='почта')
     phone_number = models.CharField(max_length=15, **NULLBLE)
     avatar = models.ImageField(upload_to='avatars/', **NULLBLE)
     country  = models.CharField(max_length=100, **NULLBLE)

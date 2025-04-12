@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
 
     'users',
+    'habit_tracker',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'config.urls'
