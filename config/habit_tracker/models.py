@@ -1,12 +1,38 @@
 from datetime import timedelta
 
+from django.contrib.postgres.fields import ArrayField
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.conf import settings
+from django import forms
+
 
 NULLBLE = {"blank": True, "null": True}
 
+
+class Days(models.Model):
+    DAYS_OF_WEEK = (
+        ('mon', 'Понедельник'),
+        ('tue', 'Вторник'),
+        ('wed', 'Среда'),
+        ('thu', 'Четверг'),
+        ('fri', 'Пятница'),
+        ('sat', 'Суббота'),
+        ('sun', 'Воскресенье'),
+    )
+
+    days = models.CharField(
+        max_length=100,
+        choices=DAYS_OF_WEEK,
+        blank=True
+    )
+    def __str__(self):
+        return f"{self.days}"
+
+    class Meta:
+        verbose_name = "день"
+        verbose_name_plural = "дни"
 
 class Habit(models.Model):
     place  = models.CharField(
@@ -23,12 +49,14 @@ class Habit(models.Model):
         verbose_name='что делать',
         help_text='введите действие, которое представляет собой привычка'
     )
-    frequency = models.PositiveIntegerField(
-        default=1,
-        validators=[MaxValueValidator(7)],
-        verbose_name='периодичность привычки',
-        help_text='введите периодичность выполнения привычки для напоминания в днях (по умолчанию ежедневная)'
-    )
+    # frequency = models.PositiveIntegerField(
+    #     default=1,
+    #     validators=[MaxValueValidator(7)],
+    #     verbose_name='периодичность привычки',
+    #     help_text='введите периодичность выполнения привычки для напоминания в днях (по умолчанию ежедневная)'
+    # )
+    frequency = models.ManyToManyField(Days)
+
     time_to_perform = models.DurationField(
         verbose_name='время на выполнение привычки',
         validators=[MinValueValidator(timedelta(seconds=1)), MaxValueValidator(timedelta(seconds=120))],
@@ -60,7 +88,7 @@ class Habit(models.Model):
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
-        related_name="subscription",
+        related_name="habit_set",
         verbose_name="пользователь",
         **NULLBLE)
 
@@ -100,4 +128,5 @@ class Habit(models.Model):
     class Meta:
         verbose_name = "привычка"
         verbose_name_plural = "привычки"
+
 

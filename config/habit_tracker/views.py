@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from users.permissions import IsCreator
 
 
+
 class HabitCreateAPIView(generics.CreateAPIView):
     serializer_class = HabitSerializer
 
