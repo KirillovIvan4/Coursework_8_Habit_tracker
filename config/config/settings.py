@@ -27,6 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 SECRET_API_KEY = os.getenv('SECRET_API_KEY')
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.getenv('DEBUG') == "True" else False
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
 
     'users',
+    'habit_tracker',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -200,8 +203,12 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
 CELERY_BEAT_SCHEDULE = {
-    "check_user_is_active": {
-        "task": "users.tasks.check_user_is_active",
+    # "check_user_is_active": {
+    #     "task": "users.tasks.check_user_is_active",
+    #     "schedule": timedelta(seconds=5),
+    # },
+    "tg_massage_task":{
+        "task": "habit_tracker.tasks.tg_massage_task",
         "schedule": timedelta(seconds=5),
-    },
+    }
 }
