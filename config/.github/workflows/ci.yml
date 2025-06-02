@@ -99,3 +99,4 @@ volumes:
   redis_data:
   postgres_data:
   static_volume:
+
