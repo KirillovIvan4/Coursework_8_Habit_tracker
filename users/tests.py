@@ -8,6 +8,7 @@ from rest_framework.test import APITestCase
 from users.models import User
 from users.tasks import check_user_is_active
 
+
 class UserTestCase(APITestCase):
     def setUp(self):
         # Подготовка данных перед каждым теcтом

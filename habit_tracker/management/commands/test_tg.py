@@ -13,7 +13,7 @@ class Command(BaseCommand):
         }
         try:
             response = requests.get(
-            f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage',
+                f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage',
                 params=params
             )
             response.raise_for_status()
