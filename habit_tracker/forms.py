@@ -1,5 +1,6 @@
 from django import forms
 
+
 class HabitForm(forms.Form):
     days = forms.MultipleChoiceField(
         choices=[

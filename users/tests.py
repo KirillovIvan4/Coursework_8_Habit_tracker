@@ -11,7 +11,10 @@ from users.tasks import check_user_is_active
 class UserTestCase(APITestCase):
     def setUp(self):
         # Подготовка данных перед каждым теcтом
-        self.user = User.objects.create(email='admin@admin.com', username='admin1235')
+        self.user = User.objects.create(
+            email='admin@admin.com',
+            username='admin1235'
+        )
 
     def test_user_create(self):
         url = reverse('users:register')
@@ -26,7 +29,8 @@ class UserTestCase(APITestCase):
 
         self.assertEqual(
             response.status_code, status.HTTP_201_CREATED,
-            msg=f"Response data: {response.json()}"  # Покажет ошибки валидации
+            # Покажет ошибки валидации
+            msg=f"Response data: {response.json()}"
         )
         self.assertEqual(
             User.objects.all().count(), 2
@@ -42,7 +46,7 @@ class CheckUserActiveTaskTest(TestCase):
         self.active_user = User.objects.create(
             email='active@example.com',
             username='test1224',
-            password= 'testpassword123',
+            password='testpassword123',
             is_active=True,
             last_login=self.current_time - timedelta(days=10)
         )
@@ -55,7 +59,8 @@ class CheckUserActiveTaskTest(TestCase):
             is_active=False,
             last_login=self.current_time - timedelta(days=40))
 
-        # Активный пользователь, который не заходил больше месяца (должен быть выбран)
+        # Активный пользователь, который
+        # не заходил больше месяца (должен быть выбран)
         self.to_deactivate_user = User.objects.create(
             email='to_deactivate@example.com',
             username='test1226',

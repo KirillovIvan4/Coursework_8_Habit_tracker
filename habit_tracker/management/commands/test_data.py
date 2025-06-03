@@ -3,7 +3,6 @@ import requests
 from django.core.management.base import BaseCommand
 from datetime import datetime
 
-from habit_tracker.models import Habit
 from users.models import User
 
 
@@ -24,13 +23,13 @@ class Command(BaseCommand):
                     for frequency in habit.frequency.all():
                         if frequency.days == days_of_week[now.weekday()]:
                             message_text = (
-                                f"Напоминаем у вас запланирована привычка\n"
-                                f"Место выполнения привычки: {habit.place}\n"
-                                f"Время когда ее выполнять: {habit.time}\n"
-                                f"Что делать: {habit.action}\n"
-                                f"Время на выполнение: {habit.time_to_perform}\n"
-                                f"Вознаграждение: {habit.reward}\n"
-                                f"Связанная привычка: {habit.linked_habit}"
+                            f"Напоминаем у вас запланирована привычка\n"
+                            f"Место выполнения привычки: {habit.place}\n"
+                            f"Время когда ее выполнять: {habit.time}\n"
+                            f"Что делать: {habit.action}\n"
+                            f"Время на выполнение: {habit.time_to_perform}\n"
+                            f"Вознаграждение: {habit.reward}\n"
+                            f"Связанная привычка: {habit.linked_habit}"
                             )
 
                             params = {

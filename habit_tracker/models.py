@@ -58,25 +58,25 @@ class Habit(models.Model):
             MaxValueValidator(timedelta(seconds=120))
         ],
         help_text='введите время, которое предположительно потратит '
-                 'пользователь на выполнение привычки',
+                  'пользователь на выполнение привычки',
     )
     publicity_indicator = models.BooleanField(
         default=False,
         verbose_name="признак публичности привычки",
         help_text='привычка опубликована в общий доступ, чтобы другие '
-                 'пользователи могли брать в пример чужие привычки'
+                'пользователи могли брать в пример чужие привычки'
     )
     pleasant_habit_indicator = models.BooleanField(
         default=False,
         verbose_name="признак приятной привычки",
         help_text='привычка, которую можно привязать к выполнению '
-                 'полезной привычки'
+                  'полезной привычки'
     )
     reward = models.CharField(
         max_length=150,
         verbose_name='вознаграждение',
         help_text='введите Вознаграждение которым пользователь должен себя '
-                 'вознаградить после выполнения привычки',
+                  'вознаградить после выполнения привычки',
         **NULLBLE
     )
     linked_habit = models.ForeignKey(
@@ -84,7 +84,7 @@ class Habit(models.Model):
         on_delete=models.SET_NULL,
         verbose_name="связанная привычка",
         help_text='Привычка, которая связана с текущей (например, приятная '
-                 'привычка для вознаграждения)',
+                  'привычка для вознаграждения)',
         **NULLBLE
     )
     creator = models.ForeignKey(

@@ -22,7 +22,8 @@ class HabitTestCase(APITestCase):
         self.habit.frequency.set([self.days])
 
     def test_habit_retrieve(self):
-        url = reverse('habit_tracker:habit-get', args=(self.habit.pk,))
+        url = reverse('habit_tracker:habit-get',
+                      args=(self.habit.pk,))
         response = self.client.get(url)
         data = response.json()
 
@@ -36,13 +37,13 @@ class HabitTestCase(APITestCase):
     def test_habit_create(self):
         url = reverse('habit_tracker:habit-create')
         data = {
-            'place':'Test_place',
-            'time':'12:00:00',
-            'action':'Test_action',
-            'time_to_perform':'00:02:00',
-            'frequency':[self.days.pk],
-            'publicity_indicator':True,
-            'pleasant_habit_indicator':True,
+            'place': 'Test_place',
+            'time': '12:00:00',
+            'action': 'Test_action',
+            'time_to_perform': '00:02:00',
+            'frequency': [self.days.pk],
+            'publicity_indicator': True,
+            'pleasant_habit_indicator': True,
         }
         response = self.client.post(url, data=data)
 
