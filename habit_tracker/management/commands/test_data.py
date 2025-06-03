@@ -27,7 +27,7 @@ class Command(BaseCommand):
                                 f"Место выполнения привычки: {habit.place}\n"
                                 f"Время когда ее выполнять: {habit.time}\n"
                                 f"Что делать: {habit.action}\n"
-                                f"Время на выполнение: {habit.time_to_perform}\n"
+                                f"Длительность: {habit.time_to_perform}\n"
                                 f"Вознаграждение: {habit.reward}\n"
                                 f"Связанная привычка: {habit.linked_habit}"
                             )
