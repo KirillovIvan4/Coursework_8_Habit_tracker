@@ -20,7 +20,8 @@ def tg_massage_task():
                 for frequency in habit.frequency.all():
                     if frequency.days == days_of_week[now.weekday()]:
                         params = {
-                            'text': f'''Напоминаем у вас запланированна привычка
+                            'text': f'''
+            Напоминаем у вас запланированна привычка
             Место выполнения привычки:{habit.place}
             Время когда ее выполнять:{habit.time}
             Что делать:{habit.action}

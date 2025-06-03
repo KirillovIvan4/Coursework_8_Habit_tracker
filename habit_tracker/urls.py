@@ -7,14 +7,19 @@ app_name = HabitTrackerConfig.name
 
 urlpatterns = [
     # Привычки
-    path('habit/create/', HabitCreateAPIView.as_view(),
+    path('habit/create/',
+         HabitCreateAPIView.as_view(),
          name='habit-create'),
-    path('habit/', HabitListAPIView.as_view(),
+    path('habit/',
+         HabitListAPIView.as_view(),
          name='habit-list'),
-    path('habit/<int:pk>/', HabitRetrieveAPIView.as_view(),
+    path('habit/<int:pk>/',
+         HabitRetrieveAPIView.as_view(),
          name='habit-get'),
-    path('habit/update/<int:pk>/', HabitUpdateAPIView.as_view(),
+    path('habit/update/<int:pk>/',
+         HabitUpdateAPIView.as_view(),
          name='habit-update'),
-    path('habit/delete/<int:pk>/', HabitDestroyAPIView.as_view(),
+    path('habit/delete/<int:pk>/',
+         HabitDestroyAPIView.as_view(),
          name='habit-delete'),
 ]

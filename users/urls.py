@@ -16,7 +16,9 @@ urlpatterns = [
          name='register'
          ),
     path('token/',
-         TokenObtainPairView.as_view(permission_classes=(permissions.AllowAny,)),
+         TokenObtainPairView.as_view(
+             permission_classes=(permissions.AllowAny,)
+         ),
          name='token_obtain_pair'
          ),
     path('token/refresh/',

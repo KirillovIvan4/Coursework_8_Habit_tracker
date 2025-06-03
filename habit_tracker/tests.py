@@ -56,7 +56,7 @@ class HabitTestCase(APITestCase):
 
     def test_habit_update(self):
         url = reverse('habit_tracker:habit-update', args=(self.habit.pk,))
-        data = {'place':'Test_place_2'}
+        data = {'place': 'Test_place_2'}
         response = self.client.patch(url, data)
 
         self.assertEqual(

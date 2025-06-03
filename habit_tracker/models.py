@@ -64,7 +64,7 @@ class Habit(models.Model):
         default=False,
         verbose_name="признак публичности привычки",
         help_text='привычка опубликована в общий доступ, чтобы другие '
-                'пользователи могли брать в пример чужие привычки'
+                  'пользователи могли брать в пример чужие привычки'
     )
     pleasant_habit_indicator = models.BooleanField(
         default=False,

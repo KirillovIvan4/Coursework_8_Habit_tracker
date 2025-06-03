@@ -19,8 +19,8 @@ class UserTestCase(APITestCase):
     def test_user_create(self):
         url = reverse('users:register')
         data = {
-            'email': 'new_user@example.com',  # Используем другой email
-            'password': 'testpassword123',  # Добавляем обязательное поле password
+            'email': 'new_user@example.com',
+            'password': 'testpassword123',
             'username': 'Test12154',
         }
         response = self.client.post(url, data=data)

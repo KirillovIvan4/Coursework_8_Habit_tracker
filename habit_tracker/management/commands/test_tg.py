@@ -6,7 +6,6 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
 
-    #def test_tg():
     def handle(self, *args, **options):
         params = {
             'text': 'сообщение отправлено',
@@ -15,9 +14,9 @@ class Command(BaseCommand):
         try:
             response = requests.get(
             f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage',
-            params=params
+                params=params
             )
-            response.raise_for_status()  # вызовет исключение для 4XX/5XX ответов
+            response.raise_for_status()
             self.stdout.write(
                 self.style.SUCCESS('Сообщение успешно отправлено')
             )
