@@ -110,16 +110,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'NumericPasswordValidator',
     },
 ]
 
@@ -167,32 +171,29 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #    'rest_framework.permissions.AllowAny',
-    # ]
+    #  'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.AllowAny',
+    #  ]
 }
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8000',
-    'http://127.0.0.1:8000',# Замените на адрес вашего фронтенд-сервера
+    'http://127.0.0.1:8000',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
-    'http://127.0.0.1:8000', #  Замените на адрес вашего фронтенд-сервера
-    # и добавьте адрес бэкенд-сервера
+    'http://127.0.0.1:8000',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
 
 # Настройки для Celery
-
 # URL-адрес брокера сообщений
-CELERY_BROKER_URL = 'redis://localhost:6379' # Например, Redis, который по умолчанию работает на порту 6379
+CELERY_BROKER_URL = 'redis://localhost:6379'
 
 # URL-адрес брокера результатов, также Redis
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-
 # Часовой пояс для работы Celery
 CELERY_TIMEZONE = TIME_ZONE
 
@@ -207,8 +208,8 @@ CELERY_BEAT_SCHEDULE = {
     #     "task": "users.tasks.check_user_is_active",
     #     "schedule": timedelta(seconds=5),
     # },
-    "tg_massage_task":{
+    "tg_massage_task": {
         "task": "habit_tracker.tasks.tg_massage_task",
         "schedule": timedelta(seconds=5),
-    }
+    },
 }

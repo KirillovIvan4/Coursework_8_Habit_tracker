@@ -1,9 +1,10 @@
-from config.settings import TELEGRAM_BOT_TOKEN
+from config import settings
 import requests
 from datetime import datetime
 from celery import shared_task
 
 from users.models import User
+
 
 @shared_task
 def tg_massage_task():
@@ -30,12 +31,13 @@ def tg_massage_task():
                         }
                         try:
                             response = requests.get(
-                                f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage',
+                                f'https://api.telegram.org/bot'
+                                f'{settings.TELEGRAM_BOT_TOKEN}/sendMessage',
                                 params=params
                             )
                             response.raise_for_status()
-                            self.stdout.write(self.style.SUCCESS('Сообщение успешно отправлено'))
+                            print('Сообщение успешно отправлено')
                         except requests.exceptions.RequestException as e:
-                            self.stdout.write(self.style.ERROR(f'Ошибка при отправке сообщения: {e}'))
+                            print(f'Ошибка при отправке сообщения: {e}')
         else:
             print(f"У пользователя {user} не заполнен Tg chat id")

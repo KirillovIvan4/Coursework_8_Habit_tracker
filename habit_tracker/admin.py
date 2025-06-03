@@ -9,6 +9,7 @@ class HabitAdmin(admin.ModelAdmin):
     list_filter = ('place', 'time', 'action',)
     search_fields = ('place', 'time', 'action',)
 
+
 @admin.register(Days)
 class DaysAdmin(admin.ModelAdmin):
     list_display = ('pk', 'days', )

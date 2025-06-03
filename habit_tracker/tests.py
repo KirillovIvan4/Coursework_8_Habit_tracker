@@ -11,9 +11,13 @@ class HabitTestCase(APITestCase):
         # Подготовка данных перед каждым теcтом
         self.user = User.objects.create(email='admin@admin.com')
         self.days = Days.objects.create(days='mon')
-        self.habit = Habit.objects.create(place='Test_place', time='12:00:00', action='Test_action',
-                                          time_to_perform='00:02:00', publicity_indicator=True,
-                                          pleasant_habit_indicator=True, creator=self.user)
+        self.habit = Habit.objects.create(place='Test_place',
+                                          time='12:00:00',
+                                          action='Test_action',
+                                          time_to_perform='00:02:00',
+                                          publicity_indicator=True,
+                                          pleasant_habit_indicator=True,
+                                          creator=self.user)
         self.client.force_authenticate(user=self.user)
         self.habit.frequency.set([self.days])
 
@@ -28,16 +32,17 @@ class HabitTestCase(APITestCase):
         self.assertEqual(
             data.get('place'), self.habit.place
         )
+
     def test_habit_create(self):
         url = reverse('habit_tracker:habit-create')
         data = {
-            'place' : 'Test_place',
-            'time' : '12:00:00',
-            'action' : 'Test_action',
-            'time_to_perform' : '00:02:00',
-            'frequency': [self.days.pk],
-            'publicity_indicator' : True,
-            'pleasant_habit_indicator' : True,
+            'place':'Test_place',
+            'time':'12:00:00',
+            'action':'Test_action',
+            'time_to_perform':'00:02:00',
+            'frequency':[self.days.pk],
+            'publicity_indicator':True,
+            'pleasant_habit_indicator':True,
         }
         response = self.client.post(url, data=data)
 
@@ -50,7 +55,7 @@ class HabitTestCase(APITestCase):
 
     def test_habit_update(self):
         url = reverse('habit_tracker:habit-update', args=(self.habit.pk,))
-        data = {'place' : 'Test_place_2'}
+        data = {'place':'Test_place_2'}
         response = self.client.patch(url, data)
 
         self.assertEqual(
