@@ -7,7 +7,7 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        params={
+        params = {
             'text': 'сообщение отправлено',
             'chat_id': 1976932412
         }
@@ -16,7 +16,7 @@ class Command(BaseCommand):
                 url=(
                     f'https://api.telegram.org/bot'
                     f'{TELEGRAM_BOT_TOKEN}/sendMessage'
-            ),
+                ),
                 params=params
             )
             response.raise_for_status()
