@@ -7,15 +7,15 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        params = {
+        params={
             'text': 'сообщение отправлено',
             'chat_id': 1976932412
         }
         try:
             response = requests.get(
-                url = (
-                f'https://api.telegram.org/bot'
-                f'{TELEGRAM_BOT_TOKEN}/sendMessage'
+                url=(
+                    f'https://api.telegram.org/bot'
+                    f'{TELEGRAM_BOT_TOKEN}/sendMessage'
             ),
                 params=params
             )
